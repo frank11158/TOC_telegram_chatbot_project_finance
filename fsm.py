@@ -40,7 +40,7 @@ class TocMachine(GraphMachine):
 
     def is_going_to_state6(self, update):
         text = update.message.text
-        keyword5 = text.split(',')[0]
+        keyword6 = text.split(',')[0]
         return keyword6 == 'findcurrent'
 
     def on_enter_state1(self, update):
@@ -58,7 +58,7 @@ class TocMachine(GraphMachine):
         update.message.reply_text("(In state2)\n"
                                    +"please enter stock code\n"
                                    +"Ex: findcurrent,FB\n"
-                                   +"(FB) for facebook,\n")
+                                   +"(FB) for facebook\n")
         self.go_back(update)
 
     def on_exit_state2(self, update):
@@ -68,7 +68,7 @@ class TocMachine(GraphMachine):
         update.message.reply_text("(In state3)\n"
                                    +"please enter stock code\n"
                                    +"Ex: findoption,FB\n"
-                                   +"(FB) for facebook,\n")
+                                   +"(FB) for facebook\n")
         self.go_back(update)
 
     def on_exit_state3(self, update):
@@ -128,6 +128,8 @@ class TocMachine(GraphMachine):
 
     def on_enter_state6(self, update):
         update.message.reply_text("I'm entering state6")
+        text = update.message.text
+        stock_name = text.split(',')[1]
         # cur_year = datetime.datetime.now().yaer
         # cur_month = datetime.datetime.now().month
         # cur_day = datetime.datetime.now().day
