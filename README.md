@@ -71,6 +71,7 @@ Every time `user` state is triggered to `advance` to another state, it will `go_
 * state1
 	* Input: "findstock,FB,2017-01-01,2017-05-01"
 		* Reply: stock price time series figure(png)
+		![fsm](./img/a.png)
 
 
 ## Author
