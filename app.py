@@ -6,9 +6,16 @@ from flask import Flask, request, send_file
 
 from fsm import TocMachine
 
+import numpy as np
+import pandas as pd
+import pandas_datareader.data as web
+from pandas_datareader.data import Options
+import datetime
+import matplotlib.pyplot as plt
 
-API_TOKEN = 'Your Telegram API Token'
-WEBHOOK_URL = 'Your Webhook URL'
+
+API_TOKEN = '525789807:AAGCru763m_yd_OGwEK3f0GtRuXbSqi0axg'
+WEBHOOK_URL = 'https://445f0652.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
@@ -16,7 +23,11 @@ machine = TocMachine(
     states=[
         'user',
         'state1',
-        'state2'
+        'state2',
+		'state3',
+		'state4',
+		'state5',
+		'state6'
     ],
     transitions=[
         {
@@ -31,11 +42,36 @@ machine = TocMachine(
             'dest': 'state2',
             'conditions': 'is_going_to_state2'
         },
+		{
+            'trigger': 'advance',
+            'source': 'user',
+            'dest': 'state3',
+            'conditions': 'is_going_to_state3'
+        },
+		{
+            'trigger': 'advance',
+            'source': 'state1',
+            'dest': 'state4',
+            'conditions': 'is_going_to_state4'
+        },
+		{
+            'trigger': 'advance',
+            'source': 'state2',
+            'dest': 'state5',
+            'conditions': 'is_going_to_state5'
+        },
+		{
+            'trigger': 'advance',
+            'source': 'state3',
+            'dest': 'state6',
+            'conditions': 'is_going_to_state6'
+        },
         {
             'trigger': 'go_back',
             'source': [
-                'state1',
-                'state2'
+                'state4',
+                'state5',
+				'state6'
             ],
             'dest': 'user'
         }
@@ -72,4 +108,4 @@ def show_fsm():
 
 if __name__ == "__main__":
     _set_webhook()
-    app.run()
+    app.run(port = 8443)
