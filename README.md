@@ -28,7 +28,7 @@ You can either setup https server or using `ngrok` as a proxy.
 **`ngrok` would be used in the following instruction**
 
 ```sh
-ngrok http 5000
+ngrok http 8443
 ```
 
 After that, `ngrok` would generate a https URL.
@@ -50,12 +50,28 @@ The initial state is set to `user`.
 Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
 
 * user
-	* Input: "go to state1"
-		* Reply: "I'm entering state1"
+	* Input: "a"
+		* Reply: "(In state1)
+                  please enter stock code and duration
+                  Ex: findstock,FB,2017-01-01,2017-05-01
+                  (FB) for facebook,
+                  (2017-01-01, 2017-05-01) for start date and end date"
 
-	* Input: "go to state2"
-		* Reply: "I'm entering state2"
+	* Input: "b"
+		* Reply: "(In state2)
+                  please enter stock code
+                  Ex: findcurrent,FB
+                  (FB) for facebook"
+
+	* Input: "c"
+		* Reply: "(In state3)
+                  please enter stock code
+                  Ex: findoption,FB
+                  (FB) for facebook"
+* state1
+	* Input: "findstock,FB,2017-01-01,2017-05-01"
+		* Reply: stock price time series figure(png)
 
 
 ## Author
-[Lee-W](https://github.com/Lee-W)
+Frank-Chang
