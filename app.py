@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 
 
 API_TOKEN = '525789807:AAGCru763m_yd_OGwEK3f0GtRuXbSqi0axg'
-WEBHOOK_URL = 'https://445f0652.ngrok.io/hook'
+WEBHOOK_URL = 'https://1861981b.ngrok.io/hook'
 
 app = Flask(__name__)
 bot = telegram.Bot(token=API_TOKEN)
